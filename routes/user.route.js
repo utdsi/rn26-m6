@@ -12,7 +12,7 @@ const userRouter = express.Router()
 
 const {UserModel} = require("../model/user.model.js")
 
-userRouter.post("/signup",async(req,res)=>{
+userRouter.post("/api/register",async(req,res)=>{
 
     const {name,email,password} = req.body
 
@@ -23,7 +23,7 @@ userRouter.post("/signup",async(req,res)=>{
             if(err){
                 console.log({"msg":err})
             }else{
-                const user = await new UserModel({name,email,password:hash})
+                const user =  new UserModel({name,email,password:hash})
 
                 await user.save()
 
@@ -40,7 +40,7 @@ userRouter.post("/signup",async(req,res)=>{
 })
 
 
-userRouter.post("/login",async (req,res)=>{
+userRouter.post("/api/login",async (req,res)=>{
 
     const {email,password} = req.body
 

@@ -10,6 +10,7 @@ require('dotenv').config()
 
 const {connection} = require("./config/db.js")
 const {userRouter} = require("./routes/user.route.js")
+const {flightRouter} = require("./routes/flight.route.js")
 
 app.get("/",(req,res)=>{
 
@@ -17,6 +18,7 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/",userRouter)
+app.use("/",flightRouter)
 
 
 app.listen(process.env.port,async()=>{
