@@ -25,7 +25,7 @@ METHOD: "GET"
 https://splendid-mite-bonnet.cyclic.app/api/flights
 ```
 
-##get one flight
+##get flight on id
 <br>
 METHOD: "GET"
 ```javascript
@@ -53,7 +53,7 @@ METHOD: "DELETE"
 https://splendid-mite-bonnet.cyclic.app/api/flights/:id
 ```
 
-##Book fligts
+##book fligts
 <br>
 METHOD: "POST"
 ```javascript
