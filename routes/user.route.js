@@ -23,7 +23,7 @@ userRouter.post("/signup",async(req,res)=>{
             if(err){
                 console.log({"msg":err})
             }else{
-                const user = await new UserModel({name,email,password})
+                const user = await new UserModel({name,email,password:hash})
 
                 await user.save()
 
@@ -37,6 +37,42 @@ userRouter.post("/signup",async(req,res)=>{
         console.log(error)
         
     }
+})
+
+
+userRouter.post("/login",async (req,res)=>{
+
+    const {email,password} = req.body
+
+    try {
+        
+        const user  = await UserModel.findOne({email})
+
+        if(user){
+
+            const hash_password = user.password
+            bcrypt.compare(password, hash_password, function(err, result) {
+
+                if(result){
+
+                    const token = jwt.sign({ "Userid":user._id }, process.env.pass);
+
+                    res.send({"msg":"login successfull","token":token})
+                }else{
+                    res.send("login failed")
+                }
+                // result == false
+            });
+            
+        }else{
+            res.send("login failed")
+        }
+    } catch (error) {
+
+        console.log(error)
+        
+    }
+
 })
 
 
