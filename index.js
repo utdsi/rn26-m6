@@ -12,6 +12,8 @@ const {connection} = require("./config/db.js")
 const {userRouter} = require("./routes/user.route.js")
 const {flightRouter} = require("./routes/flight.route.js")
 
+const {bookingRouter} = require("./routes/booking.route.js")
+
 app.get("/",(req,res)=>{
 
     res.send("welcome to ticket booking app")
@@ -19,6 +21,7 @@ app.get("/",(req,res)=>{
 
 app.use("/",userRouter)
 app.use("/",flightRouter)
+app.use("/",bookingRouter)
 
 
 app.listen(process.env.port,async()=>{
